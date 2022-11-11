@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
+import { urlFor } from "../sanity";
 
 const RestaurantCard = ({
   id,
@@ -20,7 +21,7 @@ const RestaurantCard = ({
       <Image
         style={tw`h-36 w-64 rounded-sm`}
         source={{
-          uri: imgUrl,
+          uri: urlFor(imgUrl).url(),
         }}
       />
 
