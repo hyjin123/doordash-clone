@@ -1,11 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native";
 import tw from "twrnc";
 import * as Animatable from "react-native-animatable";
 import * as Progress from "react-native-progress";
+import { useNavigation } from "@react-navigation/core";
 
 const PreparingOrderScreen = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    // After 4 seconds, navigate to the delivery screen
+    setTimeout(() => {
+      navigation.navigate("Delivery");
+    }, 4000);
+  }, []);
+
   return (
     <SafeAreaView style={tw`bg-[#FF3008] flex-1 justify-center items-center`}>
       <Animatable.Image
