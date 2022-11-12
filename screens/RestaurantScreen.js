@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { urlFor } from "../sanity";
@@ -20,6 +20,8 @@ import {
 import tw from "twrnc";
 import DishRow from "../components/DishRow";
 import BasketIcon from "../components/BasketIcon";
+import { useDispatch } from "react-redux";
+import { setRestaurant } from "../features/restaurantSlice";
 
 const RestaurantScreen = () => {
   // how to pull the data sent through navigation
@@ -39,6 +41,25 @@ const RestaurantScreen = () => {
   } = useRoute();
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  // set data in redux
+  useEffect(() => {
+    dispatch(
+      setRestaurant({
+        id,
+        imgUrl,
+        title,
+        rating,
+        genre,
+        address,
+        short_description,
+        dishes,
+        long,
+        lat,
+      })
+    );
+  }, [dispatch]);
 
   // when the component "paints", hide the navigation
   useLayoutEffect(() => {

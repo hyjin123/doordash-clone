@@ -11,9 +11,13 @@ const BasketIcon = () => {
   const navigation = useNavigation();
   const basketTotal = useSelector(selectBasketTotal);
 
+  // dont show the basket if no items are selected
+  if (items.length === 0) return null;
+
   return (
     <View style={tw`absolute bottom-10 w-full z-50`}>
       <TouchableOpacity
+        onPress={() => navigation.navigate("Basket")}
         style={tw`mx-5 bg-[#FF3008] flex-row rounded-lg p-4 items-center`}
       >
         <Text
@@ -22,7 +26,7 @@ const BasketIcon = () => {
           {items.length}
         </Text>
         <Text style={tw`flex-1 text-white font-extrabold text-center ml-2`}>
-          View Basket
+          VIEW BASKET
         </Text>
         <Text style={tw`text-lg text-white font-extrabold ml-2`}>
           <Currency quantity={basketTotal} currency="CAD" />
